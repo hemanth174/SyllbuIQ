@@ -1,0 +1,18 @@
+###
+POST http://localhost:7000/api/auth/add-user
+Content-Type: application/json
+
+{
+  "name": "hemanth",
+  "email": "hemanthramasaia@gmail.com",
+  "password": "edrftgyhujik",
+  "conformpass": "edrftgyhujik"
+}
+###
+GET http://localhost:7000/api/auth/login-user
+Content-Type: application/json
+
+{
+  "email": "ramasaiahemanth@gmail.com",
+  "password": "hemanth123"
+}
