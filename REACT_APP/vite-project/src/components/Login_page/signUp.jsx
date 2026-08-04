@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eye, EyeClosed, AlertCircle } from "lucide-react";
+import { Eye, EyeClosed, AlertCircle, MoveLeft } from "lucide-react";
 import { FadeLoader } from "react-spinners";
 import { useTheme } from "../../context/Themecontext/ThemeContext"
 import { Link, useNavigate } from "react-router";
@@ -57,19 +57,25 @@ const finalEMail = `${email}@gmail.com`
     }
     return (
         <>
-            <div className={`${textTheme} ${bgTheme} min-h-screen w-full relative pt-10`}>
+            <div className={`${textTheme} ${bgTheme} flex flex-col justify-center min-h-screen w-full relative`}>
                 <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300">
                     <button
-                        className={`flex items-center gap-2 ${textTheme} border-2 border-green-500/50 hover:border-green-500 px-4 py-2 rounded-xl font-bold transition-all duration-300 hover:scale-105 active:scale-95 bg-transparent backdrop-blur-sm`}
+                        className={`flex items-center gap-2 ${textTheme} border-2 px-4 p-2 rounded-full font-bold transition-all duration-300 hover:scale-105 active:scale-95 bg-transparent backdrop-blur-sm [&>span:first-of-type]:hidden`}
                         onClick={() => navigate('/')}
                     >
                         <span>👈</span>
-                        <span className="hidden sm:inline">Go Back</span>
+                        <MoveLeft />
+                        <span className="hidden sm:inline relative bottom-0.3">Back</span>
                     </button>
                     <ThemeButton />
                 </nav>
-                <div className="flex items-center justify-center p-4">
-                    <div className={`flex flex-col items-center ${darkMode ? 'border border-gray-700 bg-gray-900' : 'border border-gray-200 bg-white'} rounded-2xl shadow-xl lg:w-[40%]  overflow-hidden`}>
+                <div className="flex items-center justify-around p-4">
+                    <div className="flex flex-col items-center gap-5">
+                        <img src={LogoImg} alt="SyllabiQ Logo" className="h-160 w-full rounded-[3.5rem]" />
+                        <h1 className="text-3xl text-center font-extrabold text-mono">Master Your Learning Journey</h1>
+                        <p className="w-[600px] text-center text-gray-800/90 dark:text-gray-500/90">A refined educational tracker designed for students and educators who value progress, clarity, and academic rigor.</p>
+                    </div>
+                    <div className={`flex flex-col items-center ${darkMode ? 'border border-gray-700 bg-gray-900' : 'border border-gray-200 bg-white'} rounded-2xl shadow-xl w-full max-w-md overflow-hidden`}>
                     
 
                         <div className="flex flex-col w-full px-8 pb-8 pt-4">
@@ -170,6 +176,18 @@ const finalEMail = `${email}@gmail.com`
                         </div>
                     </div>
 
+                </div>
+                <div className="mt-30 relative top-[49px]">
+                    <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
+                    <div className={`flex items-center justify-between px-8 py-5 ${darkMode ? 'bg-gray-900 text-gray-400' : 'bg-gray-100 text-gray-500'}`}>
+                        <h3 className="text-green-500 font-bold text-sm">Syllabi Q</h3>
+                        <div className="flex items-center gap-8 text-sm">
+                            <span>Privacy Policy</span>
+                            <span>Terms of Service</span>
+                            <span>Help Center</span>
+                        </div>
+                        <p className="text-sm">© 2024 Syllabi Q. All rights reserved.</p>
+                    </div>
                 </div>
             </div>
         </>
