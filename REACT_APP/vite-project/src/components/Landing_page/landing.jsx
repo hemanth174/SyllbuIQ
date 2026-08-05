@@ -8,6 +8,7 @@ import HeroImage1 from "../../assets/Landing-hero-section-lightMode-Img.jpg"
 import { Link } from 'react-router'
 import Cookies from 'js-cookie'
 import Footer from './Footer'
+
 const LadingPage = () => {
   const [showNav, setShowNav] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(true)
@@ -271,56 +272,6 @@ const LadingPage = () => {
           </section>
 
           <footer id="contact" className={`${darkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
-            {/* <div className="max-w-8xl mx-auto  flex flex-col md:flerow justify-cen items-center gap-6">
-
-              <div className='lg:flex flex-col items-center gap-10'>
-       
-                <div className='flex flex-col gap-5 text-center'>
-                  <h3 className="text-green-500 font-bold text-5xl lg:text-9xl">Syllab IQ</h3>
-                  <p className="text-gray-500 text-sm">Track your syllabus. Ace every exam.</p>
-                  <div>
-                    <form onSubmit={handleSubmit}>
-                      <input
-                        type="email"
-                        placeholder="Enter your Gmail"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="text-black p-2 border rounded-l-lg"
-                      />
-
-                      <button
-                        type="submit"
-                        className="bg-green-400 p-2 rounded-r-lg"
-                      >
-                        Subscribe
-                      </button>
-                    </form>
-                  </div>
-                </div>
-
-                
-                <div className={`${textTheme} lg:hidden flex flex-col items-center gap-8 m-10`}>
-                  <a href="#home">Home</a>
-                  <a href="#feature">Features</a>
-                  <a href="#how-it-works">How it Works</a>
-                </div>
-              </div>
-
-      
-              <div className='flex flex-col justify-center items-center gap-5'>
-                <p className="flex flex-col md:flex-row justify-center items-center  md:items-end gap-2 text-gray-500 text-lg md:text-md">Built by <span className="text-green-500 font-bold text-2xl">Hemanth Atthuluri</span></p>
-                <div className='w-full flex flex-row justify-center gap-5 mb-2'>
-                  <div className={`p-3 border rounded-full ${darkMode ? 'border-gray-700 hover:bg-gray-800' : 'border-gray-200 hover:bg-gray-50'} transition-all duration-300 cursor-pointer`}>
-                    <a href="tel:8143276940" target='_blank'><Phone size={20} className="text-green-500" /></a>
-                  </div>
-                  <div className={`p-3 border rounded-full ${darkMode ? 'border-gray-700 hover:bg-gray-800' : 'border-gray-200 hover:bg-gray-50'} transition-all duration-300 cursor-pointer`}>
-                    <a href="https://mail.google.com/mail/?view=cm&to=ramasaiahemanth@gmail.com" target='_blank'><Mail size={20} className="text-green-500" /></a>
-                  </div>
-                </div>
-                <p className="text-gray-500 text-sm">© 2026 SyllabiQ</p>
-              </div>
-
-            </div> */}
             <Footer darkMode={darkMode} email={email} handleSubmit={handleSubmit} setEmail={setEmail}/>
           </footer>
         </div>

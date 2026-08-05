@@ -13,6 +13,7 @@ import Unverifired from '../Login_page/verifypages/UnVerified'
 import GithubSuccess from '../Login_page/GithubSuccess'
 import Profile from '../Profile/Profile'
 import Settings from '../Settings/Settings'
+import NotFound from '../States/NotFound'
 const Router = () => {
     return (
         <BrowserRouter>
@@ -37,14 +38,14 @@ const Router = () => {
                 <Route element={<SecurityRoute />}>
                     <Route path='/home' element={<Home />}>
                         <Route path="feed" element={<Feed />} />
-                        <Route path = "analytics" element={<Analytics />} />
-                        <Route path = "profile" element={<Profile />} />
-                        <Route path = "setting" element={<Settings />} />
-                        </Route>
+                        <Route path="analytics" element={<Analytics />} />
+                        <Route path="profile" element={<Profile  />} />
+                        <Route path="setting" element={<Settings />} />
+                    </Route>
 
                 </Route>
 
-                <Route path='*' element={<>not found 404</>} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )
