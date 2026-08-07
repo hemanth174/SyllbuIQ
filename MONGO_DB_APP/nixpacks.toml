@@ -1,0 +1,7 @@
+providers = ["node"]
+
+[phases.install]
+cmds = ["cd MONGO_DB_APP && npm install"]
+
+[start]
+cmd = "cd MONGO_DB_APP && npm start"

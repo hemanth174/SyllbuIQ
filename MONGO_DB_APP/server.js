@@ -20,7 +20,17 @@ const app = express()
 
 // Activity image attachments are sent as data URLs, so allow a bounded multi-megabyte request.
 app.use(express.json({ limit: "8mb" }))
-app.use(cors())
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://syllbu-iq.vercel.app",
+      "https://hemanth-portfolio117-4sop.vercel.app/"
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(
     session({
         secret: "github_secret",
