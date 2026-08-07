@@ -33,7 +33,7 @@ const Login = () => {
     const finalEMail = `${email}@gmail.com`
     const oNLoginUser = async (event) => {
         event.preventDefault();
-        let apiURl = "http://localhost:7000/api/auth/login-user";
+        let apiURl = "https://syllbuiq-production.up.railway.app/api/auth/login-user";
 
         try {
             const res = await axios.post(apiURl, { email: finalEMail, password })
@@ -81,7 +81,7 @@ const Login = () => {
                             <button
                                 type="button"
                                 onClick={() => {
-                                    window.location.href = "http://localhost:7000/api/auth/github";
+                                    window.location.href = "https://syllbuiq-production.up.railway.app/api/auth/github";
                                 }}
                                 className={`w-full flex items-center justify-center gap-3 py-3 rounded-lg border transition-all duration-300
     ${darkMode

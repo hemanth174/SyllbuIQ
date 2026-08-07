@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import useRealtimeUpdates from "../../hooks/useRealtimeUpdates";
 
 const MotionDiv = motion.div;
-const API_URL = "http://localhost:7000/api/syllabus";
+const API_URL = "https://syllbuiq-production.up.railway.app/api/syllabus";
 const getConfig = () => ({ headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
 const colors = ["bg-emerald-500", "bg-sky-500", "bg-violet-500", "bg-orange-500", "bg-pink-500", "bg-amber-500"];
 const semester = "Semester 02 · 2026";

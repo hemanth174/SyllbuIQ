@@ -24,7 +24,7 @@ const SignUp = () => {
 const finalEMail = `${email}@gmail.com`
     const oNSignInUser = async (event) => {
         event.preventDefault();
-        let apiURl = "http://localhost:7000/api/auth/add-user";
+        let apiURl = "https://syllbuiq-production.up.railway.app/api/auth/add-user";
 
         try {
             const res = await axios.post(apiURl, { name, email:finalEMail, password, conformpass })

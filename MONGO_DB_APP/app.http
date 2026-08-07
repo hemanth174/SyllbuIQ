@@ -1,5 +1,5 @@
 ###
-POST http://localhost:7000/api/auth/add-user
+POST https://syllbuiq-production.up.railway.app/api/auth/add-user
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
   "conformpass": "edrftgyhujik"
 }
 ###
-GET http://localhost:7000/api/auth/login-user
+GET https://syllbuiq-production.up.railway.app/api/auth/login-user
 Content-Type: application/json
 
 {

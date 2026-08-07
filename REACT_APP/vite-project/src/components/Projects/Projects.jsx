@@ -7,8 +7,8 @@ import FolderPreview from "../ui/folder-preview";
 import useRealtimeUpdates from "../../hooks/useRealtimeUpdates";
 
 const MotionArticle = motion.article;
-const API_URL = "http://localhost:7000/api/projects";
-const SKILLS_URL = "http://localhost:7000/api/skills";
+const API_URL = "https://syllbuiq-production.up.railway.app/api/projects";
+const SKILLS_URL = "https://syllbuiq-production.up.railway.app/api/skills";
 const colors = ["violet", "sky", "emerald", "orange", "pink", "amber"];
 const blankProject = { name: "", link: "", description: "", status: "Planning", progress: 0, tags: "" };
 const getConfig = () => ({ headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
@@ -68,7 +68,7 @@ const Projects = () => {
     }
     const timer = window.setTimeout(async () => {
       try {
-        const response = await axios.get(`http://localhost:7000/api/social/people?q=${encodeURIComponent(collaboratorQuery)}`, getConfig());
+        const response = await axios.get(`https://syllbuiq-production.up.railway.app/api/social/people?q=${encodeURIComponent(collaboratorQuery)}`, getConfig());
         setCollaboratorPeople(response.data);
       } catch {
         setCollaboratorPeople([]);
@@ -116,7 +116,7 @@ const Projects = () => {
     if (!editingId || sendingCollaboration) return;
     setSendingCollaboration(true);
     try {
-      await axios.post(`http://localhost:7000/api/social/collaboration/${editingId}`, { username }, getConfig());
+      await axios.post(`https://syllbuiq-production.up.railway.app/api/social/collaboration/${editingId}`, { username }, getConfig());
       setCollaborationMessage(`Request sent to @${username}. They can approve it from Inbox.`);
       setCollaboratorQuery("");
       setCollaboratorPeople([]);

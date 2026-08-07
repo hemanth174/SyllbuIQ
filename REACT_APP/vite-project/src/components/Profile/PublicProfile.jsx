@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { ArrowLeft, Check, Heart, LoaderCircle, UserPlus, X } from "lucide-react";
 
-const API_URL = "http://localhost:7000/api/social";
+const API_URL = "https://syllbuiq-production.up.railway.app/api/social";
 const config = () => ({ headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
 
 const PublicProfile = () => {

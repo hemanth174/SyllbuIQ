@@ -7,7 +7,7 @@ import { useUser } from "../../context/userContext/userContext";
 import { useTheme } from "../../context/Themecontext/ThemeContext";
 import useRealtimeUpdates from "../../hooks/useRealtimeUpdates";
 
-const API_URL = "http://localhost:7000/api/social";
+const API_URL = "https://syllbuiq-production.up.railway.app/api/social";
 const authConfig = () => ({ headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
 
 const Feed = () => {

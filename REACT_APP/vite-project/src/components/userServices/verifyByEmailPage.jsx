@@ -11,7 +11,7 @@ const VerifyEmail = () => {
         let isSubscribed = true;
         const verify = async () => {
             try {
-                const response = await axios.get(`http://localhost:7000/api/auth/verify/${id}/${token}`);
+                const response = await axios.get(`https://syllbuiq-production.up.railway.app/api/auth/verify/${id}/${token}`);
                 
                 if (isSubscribed) {
                     setStatus('success');

@@ -120,7 +120,7 @@ const Home = () => {
   const loadInbox = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:7000/api/social/inbox",
+        "https://syllbuiq-production.up.railway.app/api/social/inbox",
         {
           headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` },
         },
@@ -162,7 +162,7 @@ const Home = () => {
   const cancelFollowRequest = async (person) => {
     try {
       await axios.patch(
-        `http://localhost:7000/api/social/requests/${person.requestId}`,
+        `https://syllbuiq-production.up.railway.app/api/social/requests/${person.requestId}`,
         { action: "cancel" },
         {
           headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` },
@@ -191,7 +191,7 @@ const Home = () => {
 
   const unfollowPerson = async (person) => {
     try {
-      await axios.delete(`http://localhost:7000/api/social/follow/${person.username}`, { headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
+      await axios.delete(`https://syllbuiq-production.up.railway.app/api/social/follow/${person.username}`, { headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
       setPeopleSearchResults((current) => current.map((item) => item.meta === `@${person.username}` ? { ...item, actions: [{ icon: <UserPlus className="h-4 w-4" />, label: "Send follow request", onClick: () => sendFollowRequest(person) }] } : item));
     } catch {
       // Keep the profile searchable if the relationship changed elsewhere.
@@ -205,7 +205,7 @@ const Home = () => {
     }
     try {
       const response = await axios.get(
-        `http://localhost:7000/api/social/people?q=${encodeURIComponent(query.trim())}`,
+        `https://syllbuiq-production.up.railway.app/api/social/people?q=${encodeURIComponent(query.trim())}`,
         {
           headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` },
         },
@@ -250,7 +250,7 @@ const Home = () => {
   const sendFollowRequest = async (person) => {
     try {
       const response = await axios.post(
-        `http://localhost:7000/api/social/follow/${person.username}`,
+        `https://syllbuiq-production.up.railway.app/api/social/follow/${person.username}`,
         {},
         {
           headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` },

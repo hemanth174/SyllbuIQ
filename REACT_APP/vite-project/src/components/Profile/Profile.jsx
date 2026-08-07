@@ -62,7 +62,7 @@ const Profile = () => {
     setUsernameSaving(true);
     setUsernameError("");
     try {
-      const response = await axios.patch("http://localhost:7000/api/auth/profile", { username }, { headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
+      const response = await axios.patch("https://syllbuiq-production.up.railway.app/api/auth/profile", { username }, { headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
       setUser(response.data);
     } catch (requestError) {
       setUsernameError(requestError.response?.data?.message || "Unable to save username.");
@@ -76,7 +76,7 @@ const Profile = () => {
     setConnectionType(type);
     setConnectionsOpen(true);
     try {
-      const response = await axios.get(`http://localhost:7000/api/social/people/${user.username}/connections?type=${type}`, { headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
+      const response = await axios.get(`https://syllbuiq-production.up.railway.app/api/social/people/${user.username}/connections?type=${type}`, { headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` } });
       setConnections(response.data);
     } catch (requestError) {
       setUsernameError(requestError.response?.data?.message || "Unable to load connections.");

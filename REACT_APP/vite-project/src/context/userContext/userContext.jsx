@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
             const token = Cookies.get("sylluIQTokens");
 
             const res = await axios.get(
-                "http://localhost:7000/api/user/profile",
+                "https://syllbuiq-production.up.railway.app/api/user/profile",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

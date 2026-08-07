@@ -58,7 +58,7 @@ export const createNewUser = async (req, res) => {
         const user = new User({ name, email, password: hashedPassword, verifyToken: hashedVerifyToken, verifyTokenExpire: Date.now() + 2 * 60 * 60 * 1000 });
         const saveduser = await user.save();
 
-        const verificationLink = `http://localhost:5173/api/auth/verify/${saveduser._id}/${verifyToken}`;
+        const verificationLink = `https://syllbu-iq.vercel.app/api/auth/verify/${saveduser._id}/${verifyToken}`;
 
         await transporter.sendMail({
             from: "no-reply-syllbuIQ@gmail.com",

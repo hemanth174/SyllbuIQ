@@ -13,7 +13,7 @@ import useRealtimeUpdates from "../../hooks/useRealtimeUpdates";
 
 const MotionBar = motion.div;
 
-const API_URL = "http://localhost:7000/api/analytics";
+const API_URL = "https://syllbuiq-production.up.railway.app/api/analytics";
 const getConfig = () => ({
   headers: { Authorization: `Bearer ${Cookies.get("sylluIQTokens")}` },
 });

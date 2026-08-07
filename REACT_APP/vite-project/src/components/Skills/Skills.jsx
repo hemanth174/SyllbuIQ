@@ -15,8 +15,8 @@ import {
 } from "lucide-react";
 import useRealtimeUpdates from "../../hooks/useRealtimeUpdates";
 
-const API_URL = "http://localhost:7000/api/skills";
-const PROJECTS_URL = "http://localhost:7000/api/projects";
+const API_URL = "https://syllbuiq-production.up.railway.app/api/skills";
+const PROJECTS_URL = "https://syllbuiq-production.up.railway.app/api/projects";
 const SKILL_CATALOG_URL =
   "https://gist.githubusercontent.com/theikkila/596d1265ae086c6d1c5e/raw/keywords.json";
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
