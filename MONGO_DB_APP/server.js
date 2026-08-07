@@ -25,7 +25,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://syllbu-iq.vercel.app",
-      "https://hemanth-portfolio117-4sop.vercel.app/"
+      "https://hemanth-portfolio117-4sop.vercel.app/","https://syllbuiq-production.up.railway.app"
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
