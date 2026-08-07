@@ -1,5 +1,5 @@
 import express from "express";
-import authMiddleware from "../middleware/authmiddleware.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 import { createCollaborationRequest, createComment, createFollowRequest, createPost, getConnections, getFeed, getInbox, getPublicProfile, markNotificationRead, respondToRequest, searchPeople, toggleLike, unfollowUser } from "../controllers/socialController.js";
 
 const router = express.Router();

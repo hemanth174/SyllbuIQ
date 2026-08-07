@@ -1,5 +1,5 @@
 import express from "express";
-import authMiddleware from "../middleware/authmiddleware.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 import { createSubject, deleteSubject, getSubjects, updateSubject } from "../controllers/syllabusController.js";
 
 const router = express.Router();
