@@ -3,6 +3,7 @@ import passport from "passport";
 import { githubSuccess } from "../controllers/githubController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import { getProfile } from "../controllers/userController.js";
+import { updateProfile } from "../controllers/socialController.js";
 import express from 'express'
 const router = express.Router()
 
@@ -15,6 +16,7 @@ router.get(
         scope: ["user:email"],
     })
 );
+router.patch("/profile", authMiddleware, updateProfile);
 router.get(
     "/profile",
     authMiddleware,

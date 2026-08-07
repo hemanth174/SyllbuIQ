@@ -1,0 +1,20 @@
+import express from "express";
+import authMiddleware from "../middleware/authmiddleware.js";
+import { createCollaborationRequest, createComment, createFollowRequest, createPost, getConnections, getFeed, getInbox, getPublicProfile, markNotificationRead, respondToRequest, searchPeople, toggleLike, unfollowUser } from "../controllers/socialController.js";
+
+const router = express.Router();
+router.use(authMiddleware);
+router.get("/people", searchPeople);
+router.get("/people/:username/connections", getConnections);
+router.get("/people/:username", getPublicProfile);
+router.post("/follow/:username", createFollowRequest);
+router.delete("/follow/:username", unfollowUser);
+router.post("/collaboration/:projectId", createCollaborationRequest);
+router.get("/inbox", getInbox);
+router.patch("/requests/:id", respondToRequest);
+router.patch("/notifications/:id/read", markNotificationRead);
+router.get("/feed", getFeed);
+router.post("/posts", createPost);
+router.post("/posts/:id/like", toggleLike);
+router.post("/posts/:id/comments", createComment);
+export default router;

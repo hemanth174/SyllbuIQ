@@ -12,7 +12,12 @@ import Verified from '../Login_page/verifypages/Verified'
 import Unverifired from '../Login_page/verifypages/UnVerified'
 import GithubSuccess from '../Login_page/GithubSuccess'
 import Profile from '../Profile/Profile'
+import PublicProfile from '../Profile/PublicProfile'
 import Settings from '../Settings/Settings'
+import Syllabus from '../Syllabus/Syllabus'
+import Projects from '../Projects/Projects'
+import Skills from '../Skills/Skills'
+import Inbox from '../Inbox/Inbox'
 import NotFound from '../States/NotFound'
 const Router = () => {
     return (
@@ -37,9 +42,15 @@ const Router = () => {
                 {/* Pages ONLY Logged-in users can see */}
                 <Route element={<SecurityRoute />}>
                     <Route path='/home' element={<Home />}>
+                        <Route index element={<Navigate to="feed" replace />} />
                         <Route path="feed" element={<Feed />} />
+                        <Route path="inbox" element={<Inbox />} />
+                        <Route path="syllabus" element={<Syllabus />} />
                         <Route path="analytics" element={<Analytics />} />
+                        <Route path="projects" element={<Projects />} />
+                        <Route path="skills" element={<Skills />} />
                         <Route path="profile" element={<Profile  />} />
+                        <Route path="profile/:username" element={<PublicProfile />} />
                         <Route path="setting" element={<Settings />} />
                     </Route>
 

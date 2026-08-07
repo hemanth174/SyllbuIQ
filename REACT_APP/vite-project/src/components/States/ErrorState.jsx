@@ -19,7 +19,7 @@ const ErrorState = ({ retry }) => (
 
             onClick={retry}
 
-            className="mt-6 bg-[#1D9E75] text-white px-6 py-3 rounded-xl"
+            className="mt-6 bg-[#1D9E75] text-white px-6 py-3 rounded-xl cursor-pointer"
 
         >
 
@@ -30,3 +30,4 @@ const ErrorState = ({ retry }) => (
     </div>
 
 )
+export default ErrorState

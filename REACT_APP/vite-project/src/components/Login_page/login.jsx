@@ -1,7 +1,4 @@
-import {
-    useState, useEffect
-
-} from "react";
+import { useState } from "react";
 import { Eye, EyeClosed, AlertCircle, CheckCircle, MoveLeft } from "lucide-react";
 import { SyncLoader } from 'react-spinners';
 import { useTheme } from "../../context/Themecontext/ThemeContext"
@@ -57,8 +54,8 @@ const Login = () => {
     }
     return (
         <>
-            <div className={`${textTheme} ${bgTheme} flex flex-col justify-center min-h-screen  w-full relative `}>
-                <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300">
+            <div className={`${textTheme} ${bgTheme} flex min-h-screen w-full flex-col overflow-x-hidden`}>
+                <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between px-4 py-4 transition-all duration-300 sm:px-6">
                     <button
                         className={`flex items-center gap-2 ${textTheme} border-2 px-4 p-2 rounded-full font-bold transition-all duration-300 hover:scale-105 active:scale-95 bg-transparent backdrop-blur-sm`}
                         onClick={() => navigate('/')}
@@ -68,13 +65,13 @@ const Login = () => {
                     </button>
                     <ThemeButton />
                 </nav>
-                <div className="flex items-center justify-around p-4">
-                     <div className="flex flex-col items-center gap-5">
-                          <img src={LogoImg} alt="SyllabiQ Logo" className="h-160 w-full rounded-[3.5rem]" />
-                          <h1 className="text-3xl text-center font-extrabold text-mono">Master Your Learning Journey</h1>
-                          <p className="w-[600px] text-center text-gray-800/90 dark:text-gray-500/90">A refined educational tracker designed for students and educators who value progress, clarity, and academic rigor.</p>
+                <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center justify-center gap-10 px-4 pb-10 pt-28 sm:px-6 lg:flex-row lg:gap-16 lg:pt-24">
+                     <div className="flex w-full max-w-xl flex-col items-center gap-4 text-center lg:items-start lg:text-left">
+                          <img src={LogoImg} alt="SyllabiQ Logo" className="h-auto w-52 rounded-3xl sm:w-64" />
+                          <h1 className="text-3xl font-extrabold sm:text-4xl">Master Your Learning Journey</h1>
+                          <p className="max-w-xl text-sm leading-6 text-gray-800/90 dark:text-gray-500/90 sm:text-base">A refined educational tracker designed for students and educators who value progress, clarity, and academic rigor.</p>
                      </div>
-                    <div className={`flex flex-col items-center ${darkMode ? 'border border-gray-700 bg-gray-900' : 'border border-gray-200 bg-white'} rounded-2xl shadow-xl w-full max-w-md  overflow-hidden`}>
+                    <div className={`flex w-full max-w-md flex-col items-center overflow-hidden rounded-2xl shadow-xl ${darkMode ? 'border border-gray-700 bg-gray-900' : 'border border-gray-200 bg-white'}`}>
                      
 
                         <div className="flex flex-col w-full p-8">
@@ -115,7 +112,7 @@ const Login = () => {
                                 <div className="flex flex-col gap-4">
                                     <div >
                                         <label className={`${textTheme} text-sm font-medium mb-1.5 block`}>Email address</label>
-                                        <div className="flex border rounded-lg">
+                                            <div className="flex flex-col rounded-lg border sm:flex-row">
                                             <input
                                                 onChange={handleEmailChange}
                                                 value={email}
@@ -123,7 +120,7 @@ const Login = () => {
 
                                                 placeholder="Enter your email"
                                             />
-                                            <span className="bg-gray-100 px-4 py-2 rounded-r-lg text-gray-600">
+                                            <span className="rounded-b-lg bg-gray-100 px-4 py-2 text-gray-600 sm:rounded-b-none sm:rounded-r-lg">
                                                 @gmail.com
                                             </span>
                                         </div>
@@ -186,11 +183,11 @@ const Login = () => {
 
                 </div>
                
-                  <div className="mt-30 relative top-20">
+                   <div className="w-full">
                      <div className={`border-t ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} />
-                     <div className={`flex items-center justify-between px-8 py-5 ${darkMode ? 'bg-gray-900 text-gray-400' : 'bg-gray-100 text-gray-500'}`}>
+                      <div className={`flex flex-col items-center gap-3 px-4 py-5 text-center sm:px-8 md:flex-row md:justify-between md:text-left ${darkMode ? 'bg-gray-900 text-gray-400' : 'bg-gray-100 text-gray-500'}`}>
                         <h3 className="text-green-500 font-bold text-sm">Syllabi Q</h3>
-                        <div className="flex items-center gap-8 text-sm">
+                         <div className="flex flex-wrap justify-center gap-4 text-sm sm:gap-8">
                             <span>Privacy Policy</span>
                             <span>Terms of Service</span>
                             <span>Help Center</span>

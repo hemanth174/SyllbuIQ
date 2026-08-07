@@ -1,0 +1,11 @@
+<svg width="260" height="72" viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="68" height="68" rx="20" fill="#0B1715"/>
+  <rect x="16" y="18" width="40" height="34" rx="6" stroke="#34D399" stroke-width="3"/>
+  <path d="M23 27H49M23 34H49M23 41H43" stroke="#8AF0C7" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M30 18V52" stroke="#34D399" stroke-width="2" opacity=".7"/>
+  <circle cx="53" cy="52" r="8" fill="#34D399"/>
+  <path d="M50 52.5L52 54.5L56 50" stroke="#07110F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="84" y="44" fill="#0F766E" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Syllabi</text>
+  <text x="182" y="44" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">Q</text>
+  <text x="85" y="59" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" letter-spacing="1.5">LEARN • PLAN • TRACK</text>
+</svg>

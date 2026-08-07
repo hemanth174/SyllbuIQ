@@ -17,7 +17,19 @@ const registerUser = new mongoose.Schema({
     },
     avatar: {
         type: String
-    }
+    },
+    username: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        minlength: 3,
+        maxlength: 30,
+        match: /^[a-z0-9_]+$/,
+        sparse: true,
+        unique: true,
+    },
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 })
 
 export default mongoose.model('User', registerUser)

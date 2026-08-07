@@ -80,8 +80,11 @@ export function SearchModal({
 }) {
   const [query, setQuery] = useState(defaultQuery);
   const [activeTags, setActiveTags] = useState(tags);
+  const [showFilters, setShowFilters] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const inputRef = useRef(null);
+  const resultRefs = useRef([]);
 
   // Open state — controlled via `open`, otherwise internal.
   const isControlled = open !== undefined;
@@ -132,18 +135,41 @@ export function SearchModal({
 
   const handleQuery = (value) => {
     setQuery(value);
+    setActiveIndex(0);
+    resultRefs.current = [];
     onQueryChange?.(value);
   };
 
   const removeTag = (index) =>
     setActiveTags((prev) => prev.filter((_, i) => i !== index));
 
+  const toggleTag = (tag) => {
+    setActiveTags((current) =>
+      current.some((item) => item.label === tag.label)
+        ? current.filter((item) => item.label !== tag.label)
+        : [...current, tag],
+    );
+  };
+
+  const handleInputKeyDown = (event) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveIndex((index) => Math.min(index + 1, Math.max(filteredResults.length - 1, 0)));
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveIndex((index) => Math.max(index - 1, 0));
+    } else if (event.key === "Enter" && filteredResults[activeIndex]) {
+      event.preventDefault();
+      resultRefs.current[activeIndex]?.click();
+    }
+  };
+
   const panel = (
     <div
       role={modal ? "dialog" : undefined}
       aria-modal={modal ? true : undefined}
       className={cn(
-        "mx-auto w-full max-w-xl overflow-hidden rounded-2xl border backdrop-blur-xl",
+        "mx-auto flex max-h-[calc(100dvh-12vh-1rem)] w-full max-w-xl flex-col overflow-y-auto rounded-2xl border backdrop-blur-xl [scrollbar-width:thin]",
         "border-black/[0.07] bg-white/85 text-neutral-900 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.22)]",
         "dark:border-white/[0.08] dark:bg-neutral-900/85 dark:text-white dark:shadow-[0_18px_50px_-16px_rgba(0,0,0,0.7)]",
         className
@@ -157,6 +183,7 @@ export function SearchModal({
           type="text"
           value={query}
           onChange={(e) => handleQuery(e.target.value)}
+          onKeyDown={handleInputKeyDown}
           placeholder={placeholder}
           aria-label="Search"
           className="min-w-0 flex-1 bg-transparent px-3 text-sm text-current outline-none placeholder:text-neutral-400 dark:placeholder:text-neutral-500" />
@@ -164,7 +191,9 @@ export function SearchModal({
           <button
             type="button"
             aria-label="Filters"
-            className="text-neutral-400 transition-colors hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-200">
+            aria-expanded={showFilters}
+            onClick={() => setShowFilters((value) => !value)}
+            className={cn("text-neutral-400 transition-colors hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-200", showFilters && "text-emerald-600 dark:text-emerald-400")}>
             <SlidersHorizontal className="h-[18px] w-[18px]" />
           </button>
           <kbd
@@ -174,6 +203,30 @@ export function SearchModal({
           </kbd>
         </div>
       </div>
+
+      {showFilters ? (
+        <div className="flex flex-wrap gap-2 border-b border-black/[0.06] px-4 py-3 dark:border-white/[0.06]">
+          {tags.map((tag) => {
+            const selected = activeTags.some((item) => item.label === tag.label);
+            return (
+              <button
+                key={tag.label}
+                type="button"
+                onClick={() => toggleTag(tag)}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-colors",
+                  selected
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                    : "border-black/[0.08] text-neutral-500 hover:border-emerald-500/30 dark:border-white/[0.1] dark:text-neutral-400",
+                )}
+              >
+                {tag.icon}
+                {tag.label}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
 
       {/* Tags */}
       {activeTags.length > 0 ? (
@@ -207,22 +260,25 @@ export function SearchModal({
             className="px-4 pt-3.5 pb-2 text-[13px] text-neutral-400 dark:text-neutral-500">
             Last search&nbsp;&nbsp;<span className="text-neutral-600 dark:text-neutral-300">{filteredResults.length}</span>
           </p>
-          <ul className="px-1.5 pb-1.5">
+          <ul className="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-1.5 pb-1.5">
             {filteredResults.map((result, i) => (
               <li key={`${result.name}-${i}`}>
                 <a
+                  ref={(node) => { resultRefs.current[i] = node; }}
                   href={result.href ?? "#"}
                   onClick={() => onSelectResult?.(result, i)}
-                  className="group relative flex items-center rounded-lg px-2.5 py-2 transition-colors hover:bg-black/[0.03] dark:hover:bg-white/[0.04]">
+                  aria-current={activeIndex === i ? "true" : undefined}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  className={cn("group relative flex items-center rounded-lg px-2.5 py-2 transition-colors hover:bg-black/[0.03] dark:hover:bg-white/[0.04]", activeIndex === i && "bg-black/[0.04] dark:bg-white/[0.06]")}>
                   {result.avatar ? (
-                    // eslint-disable-next-line @next/next/no-img-element
                     (<img
                       src={result.avatar}
                       alt=""
                       className="h-6 w-6 shrink-0 rounded-full object-cover ring-1 ring-black/5 dark:ring-white/10" />)
                   ) : (
-                    <span
-                      className="h-6 w-6 shrink-0 rounded-full bg-neutral-300 ring-1 ring-black/5 dark:bg-neutral-600 dark:ring-white/10" />
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 ring-1 ring-emerald-500/15 dark:bg-emerald-400/10 dark:text-emerald-300">
+                      {result.icon ?? <MagnifyingGlass className="h-4 w-4" />}
+                    </span>
                   )}
                   <span className="ml-2.5 truncate text-sm">
                     {result.name}
@@ -235,7 +291,8 @@ export function SearchModal({
                         <button
                           key={ai}
                           type="button"
-                          aria-label={action.label}
+                           aria-label={action.label}
+                           title={action.label}
                           onClick={(e) => {
                             e.preventDefault();
                             action.onClick?.();
@@ -333,7 +390,7 @@ export function SearchModal({
       <div
         onClick={(e) => e.stopPropagation()}
         className={cn(
-          "relative z-10 w-full max-w-xl transition-all duration-200 ease-out",
+          "relative z-10 flex max-h-[calc(100dvh-12vh-1rem)] w-full max-w-xl transition-all duration-200 ease-out",
           actualOpen ? "translate-y-0 scale-100 opacity-100" : "-translate-y-2 scale-[0.98] opacity-0"
         )}>
         {panel}

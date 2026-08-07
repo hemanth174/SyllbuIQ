@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { BookOpenCheck, PieChart, CalendarClock, Menu, X, ArrowBigDown, ArrowBigRight, Phone, Mail, } from 'lucide-react'
 import { useTheme } from '../../context/Themecontext/ThemeContext'
@@ -11,7 +11,7 @@ import Footer from './Footer'
 
 const LadingPage = () => {
   const [showNav, setShowNav] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn] = useState(() => Boolean(Cookies.get('sylluIQTokens')))
   const [email, setEmail] = useState('');
   const { darkMode } = useTheme()
   let textTheme = darkMode ? "text-white" : "text-black"
@@ -25,17 +25,12 @@ const LadingPage = () => {
     }
    navigate('/login')
   }
-  useEffect(() => {
-    const token = Cookies.get('sylluIQTokens')
-    setIsLoggedIn(token)
-  }, [])
-
   return (
     <>
       <div className="min-h-screen select-none">
-        <nav className={`w-full h-20 ${bgTheme} fixed top-0 z-50 flex justify-between items-center px-6 p-5 shadow-md dark:shadow-lg dark:shadow-green-900/20`}>
-          <div onClick={() => window.location.reload()} className="cursor-pointer  w-48 lg:w-64">
-            <svg width="100%" height="100%" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
+        <nav className={`w-full min-h-20 ${bgTheme} fixed top-0 z-50 flex justify-between items-center gap-4 px-4 py-4 sm:px-6 shadow-md dark:shadow-lg dark:shadow-green-900/20`}>
+          <div onClick={() => window.location.reload()} className="w-40 shrink-0 cursor-pointer sm:w-48 lg:w-64">
+            <svg width="100%" height="52" viewBox="0 0 420 100" xmlns="http://www.w3.org/2000/svg">
 
               <circle cx="50" cy="50" r="40" fill="none" stroke="#9FE1CB" strokeWidth="5" strokeOpacity="0.35" />
               <circle cx="50" cy="50" r="40" fill="none" stroke="#1D9E75" strokeWidth="5"
@@ -76,8 +71,8 @@ const LadingPage = () => {
 
             </svg>
           </div>
-          <div className='flex gap-10 items-center'>
-            <div className={` ${textTheme} hidden lg:flex justify-between items-center gap-20 font-bold `}>
+          <div className='flex items-center gap-3 sm:gap-6'>
+            <div className={` ${textTheme} hidden lg:flex items-center gap-8 xl:gap-14 font-bold `}>
               <a href="#home" className='hover:underline cursor-pointer' >Home</a>
               <a href="#feature" className='hover:underline cursor-pointer' >Features</a>
               <a href="#how-it-works" className='hover:underline cursor-pointer' >How it works</a>
@@ -114,19 +109,19 @@ const LadingPage = () => {
           </div>
         </nav>
 
-        <div>
+        <div className="overflow-hidden">
           {/* Hero Section */}
-          <section id="home" className={`${bgTheme}   min-h-screen pt-[110px] lg:pt-20 flex flex-col lg:flex-row lg:justify-center items-center lg:gap-10`}>
-            <div className='lg:hidden mt-10 m-5' >
-              <img src={!darkMode ? HeroImage : HeroImage1} className="w-full rounded-2xl shadow-xl shadow-green-500/20 
+          <section id="home" className={`${bgTheme} min-h-screen px-4 pt-28 pb-16 sm:px-6 lg:flex lg:justify-center lg:gap-10 lg:px-10 lg:pt-28`}>
+            <div className='mx-auto mt-8 max-w-2xl lg:hidden' >
+              <img src={!darkMode ? HeroImage : HeroImage1} className="w-full rounded-2xl shadow-xl shadow-green-500/20
            border-2 border-green-500/30 hover:scale-110 
            transition-transform duration-500"  alt="SyllabusIQ" />
             </div>
-            <div className="w-full lg:w-2/5 flex flex-col lg:gap-5">
-              <div className='flex flex-col gap-5'>              <h1 className={`${textTheme} text-center lg:text-left text-4xl lg:text-6xl font-bold text-gray-900`}>Track your syllabus Ace every exam.</h1>
-                <p className={` ${textTheme} text-center lg:text-left text-sm px-2 text-gray-500 dark:text-gray-400`}>Tired of opening 5 apps just to know what's left to study?
+            <div className="mx-auto flex w-full max-w-2xl flex-col justify-center lg:mx-0 lg:w-2/5 lg:gap-5">
+              <div className='flex flex-col gap-5'>              <h1 className={`${textTheme} text-center text-4xl font-bold leading-tight sm:text-5xl lg:text-left lg:text-6xl`}>Track your syllabus. Ace every exam.</h1>
+                <p className={` ${textTheme} text-center text-sm leading-6 text-gray-500 dark:text-gray-400 lg:text-left`}>Tired of opening 5 apps just to know what's left to study?
                   SyllabiQ gives you one clean dashboard for your entire exam prep.</p></div>
-              <div className={`${textTheme} flex gap-3 lg:gap-4 mt-4 justify-center lg:justify-start items-center p-5`}>
+              <div className={`${textTheme} mt-4 flex items-center justify-center gap-3 sm:gap-4 lg:justify-start`}>
                 <Link to="/signup">
                   <button className="text-[14px] px-6 py-3 bg-green-500 hover:bg-green-600 
                    text-white font-semibold rounded-xl 
@@ -143,7 +138,7 @@ const LadingPage = () => {
                 </a>
               </div>
             </div>
-            <div className='hidden lg:flex' >
+            <div className='hidden max-w-2xl lg:flex lg:items-center' >
               <img src={!darkMode ? HeroImage : HeroImage1} className="w-full rounded-2xl shadow-xl shadow-green-500/20 
            border-2 border-green-500/30 hover:scale-110 
            transition-transform duration-500"  alt="SyllabusIQ" />
@@ -153,7 +148,7 @@ const LadingPage = () => {
           {/* Feature Section */}
 
           <section id="feature" className={`${bgTheme}  px-6 pb-20 scroll-mt-20`}>
-            <h2 className={`${textTheme} text-4xl font-bold text-center p-10`}>
+             <h2 className={`${textTheme} px-4 py-10 text-center text-3xl font-bold sm:text-4xl`}>
               Why SyllabiQ?
             </h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto max-w-5xl '>
@@ -189,9 +184,9 @@ const LadingPage = () => {
           </section>
 
           {/* How it work section Work Flow */}
-          <section id="how-it-works" className={`${bgTheme} py-20 px-6`}>
+           <section id="how-it-works" className={`${bgTheme} px-4 py-16 sm:px-6 sm:py-20`}>
 
-            <h2 className={`${textTheme} text-4xl font-bold text-center mb-16`}>
+             <h2 className={`${textTheme} mb-12 text-center text-3xl font-bold sm:mb-16 sm:text-4xl`}>
               How It Works
             </h2>
 
@@ -249,7 +244,7 @@ const LadingPage = () => {
           </section>
 
           {/* CTA section */}
-          <section id="cta" className={`${bgTheme} py-20 px-6`}>
+           <section id="cta" className={`${bgTheme} px-4 py-16 sm:px-6 sm:py-20`}>
             <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 text-center">
 
               <h2 className={`${textTheme} text-4xl font-bold`}>

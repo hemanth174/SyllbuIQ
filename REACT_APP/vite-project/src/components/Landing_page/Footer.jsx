@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 export default function Footer({
-  darkMode,
   email,
   setEmail,
   handleSubmit,
@@ -20,16 +19,16 @@ export default function Footer({
       id="contact"
      
     >
-      <div className="w-full border border-green-100 bg-white/80 backdrop-blur-xl shadow-2xl overflow-hidden">
+      <div className="w-full overflow-hidden border border-green-100 bg-white/80 shadow-2xl backdrop-blur-xl dark:border-green-900/40 dark:bg-gray-950/80">
 
-        <div className="grid lg:grid-cols-3 gap-15 p-12">
+        <div className="grid gap-12 p-6 sm:p-10 lg:grid-cols-3 lg:gap-12 lg:p-12">
 
           {/* Left */}
           <div>
             <GraduationCap className="text-green-500" size={42} />
 
-            <h2 className="text-6xl lg:text-7xl font-black">
-              <span className="text-black">Syllab </span>
+            <h2 className="text-5xl font-black sm:text-6xl lg:text-7xl">
+              <span className="text-black dark:text-white">Syllab </span>
               <span className="text-green-500">IQ</span>
             </h2>
 
@@ -48,19 +47,16 @@ export default function Footer({
               Get tips, updates and study resources.
             </p>
 
-            <form
-              onSubmit={handleSubmit}
-              className="mt-6 flex"
-            >
+            <form onSubmit={handleSubmit} className="mt-6 flex w-full max-w-xl flex-col gap-2 sm:flex-row sm:gap-0">
               <input
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
                 type="email"
                 placeholder="Enter your Gmail"
-                className=" rounded-l-xl border px-5 py-4 outline-none font-mono "
+                className="min-w-0 flex-1 rounded-xl border px-5 py-4 font-mono outline-none sm:rounded-r-none"
               />
 
-              <button className="rounded-r-xl bg-green-500 hover:bg-green-600 text-white px-7 font-semibold">
+              <button className="rounded-xl bg-green-500 px-7 py-4 font-semibold text-white hover:bg-green-600 sm:rounded-l-none">
                 Subscribe
               </button>
             </form>
@@ -73,8 +69,8 @@ export default function Footer({
           </div>
 
           {/* Center */}
-          <div className="lg:border-x border-gray-200 lg:px-12">
-            <h3 className="font-bold text-3xl mb-10">
+          <div className="border-gray-200 lg:border-x lg:px-12 dark:border-gray-800">
+            <h3 className="mb-8 text-3xl font-bold sm:mb-10">
               Quick Links
             </h3>
 
@@ -117,7 +113,7 @@ export default function Footer({
               Built by
             </p>
 
-            <h3 className="text-4xl font-bold text-green-600 mt-2">
+            <h3 className="mt-2 text-3xl font-bold text-green-600 sm:text-4xl">
               Hemanth Atthuluri
             </h3>
 
@@ -148,7 +144,7 @@ export default function Footer({
 
         </div>
 
-        <div className="bg-[#062b21] text-white px-10 py-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col items-center justify-between gap-2 bg-[#062b21] px-6 py-6 text-center text-white sm:px-10 md:flex-row md:text-left">
           <p>© 2026 SyllabiQ. All rights reserved.</p>
 
           <p className="mt-4 md:mt-0">
